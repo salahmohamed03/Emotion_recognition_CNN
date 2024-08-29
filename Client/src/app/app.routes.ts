@@ -3,7 +3,7 @@ import { WebcamComponent } from './pages/webcam/webcam.component';
 
 export const routes: Routes = [
   {
-    path: 'webcam',
+    path: '',
     component: WebcamComponent
   }
 ];

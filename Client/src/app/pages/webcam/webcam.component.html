@@ -1,8 +1,14 @@
-<p>webcam works!</p>
-
-<video  id="webcam" autoplay ></video>
-<button (click)="togglePlay()">play/stop</button>
-<!-- button to cabture an image -->
-<button (click)="capture()">Capture</button>
-<!-- show image -->
-<img id="capturedImage" src="" alt="image">
+<div class="bg-cyan-50 w-full h-screen pt-[7rem] pb-[2rem]">
+  <div class="w-[80%] h-full bg-white rounded-3xl mx-auto shadow-2xl
+              flex flex-col p-5 space-y-3">
+    <video  id="webcam" autoplay class="w-[30rem] h-[22rem] rounded-3xl  bg-gray-500"></video>
+    <div class="flex flex-row space-x-3">
+      <button *ngIf="!play" (click)="togglePlay()" class="px-6 py-2 rounded-xl text-lg hover:bg-[#007878] bg-[#008d8d] text-white">webcam</button>
+      <button *ngIf="play" (click)="togglePlay()" class="px-6 py-2 rounded-xl text-lg hover:bg-red-500 bg-red-700 text-white">stop</button>
+      <button *ngIf="play" (click)="capture()" class="px-6 py-2 rounded-xl text-lg hover:bg-[#007878] bg-[#008d8d] text-white">capture</button>
+        <label *ngIf="!play" for="file-upload" class="custom-file-upload ">
+          Upload image
+        </label>
+        <input id="file-upload" *ngIf="!play" type="file" />
+  </div>
+</div>

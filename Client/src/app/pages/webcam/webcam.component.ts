@@ -11,29 +11,44 @@ export class WebcamComponent {
   videoRef: any;
   imageref: any;
   play: boolean = false;
-  constructor() { }
+  constructor() {
+
+  }
   togglePlay(){
     this.play = !this.play;
     if(this.play){
+
       navigator.mediaDevices.getUserMedia({
         video: true,
-        audio: false
+        audio: false,
         })
         .then(stream => {
           this.videoRef.srcObject = stream;
+
         })
         .catch(err => {
           console.error('Error accessing the camera', err);
+        })
+        .finally(() => {
+          if(!this.play){
+            this.videoRef.srcObject.getTracks().forEach((track: any) => {
+              track.stop();
+            });
+            this.videoRef.srcObject = null;
+          }
         });
     }else{
       this.videoRef.srcObject.getTracks().forEach((track: any) => {
         track.stop();
       });
+      this.videoRef.srcObject = null;
     }
   }
   ngOnInit(): void {
+    navigator.mediaDevices.getUserMedia();
     this.videoRef = document.getElementById('webcam');
-
+    this.videoRef.style.backgroundImage = "url('https://media.istockphoto.com/id/1226328537/vector/image-place-holder-with-a-gray-camera-icon.jpg?s=612x612&w=0&k=20&c=qRydgCNlE44OUSSoz5XadsH7WCkU59-l-dwrvZzhXsI=')";
+    this.videoRef.style.backgroundSize = "cover";
   }
   capture() {
     const canvas = document.createElement('canvas');
