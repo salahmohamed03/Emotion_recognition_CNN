@@ -1,14 +1,32 @@
 <div class="bg-cyan-50 w-full h-screen pt-[7rem] pb-[2rem]">
-  <div class="w-[80%] h-full bg-white rounded-3xl mx-auto shadow-2xl
-              flex flex-col p-5 space-y-3">
-    <video  id="webcam" autoplay class="w-[30rem] h-[22rem] rounded-3xl  bg-gray-500"></video>
-    <div class="flex flex-row space-x-3">
-      <button *ngIf="!play" (click)="togglePlay()" class="px-6 py-2 rounded-xl text-lg hover:bg-[#007878] bg-[#008d8d] text-white">webcam</button>
-      <button *ngIf="play" (click)="togglePlay()" class="px-6 py-2 rounded-xl text-lg hover:bg-red-500 bg-red-700 text-white">stop</button>
-      <button *ngIf="play" (click)="capture()" class="px-6 py-2 rounded-xl text-lg hover:bg-[#007878] bg-[#008d8d] text-white">capture</button>
-        <label *ngIf="!play" for="file-upload" class="custom-file-upload ">
-          Upload image
-        </label>
-        <input id="file-upload" *ngIf="!play" type="file" />
+  <div class="md:w-[80%] w-[95%] h-fit min-h-full  bg-white rounded-3xl mx-auto shadow-2xl
+              flex flex-row p-5  justify-around flex-wrap">
+    <div class="flex flex-col space-y-3 w-[29rem]">
+      <video id="webcam" autoplay class="w-[29rem] h-[21.7rem] rounded-3xl  bg-gray-500"></video>
+      <div class="flex flex-row space-x-3 justify-center">
+        <button *ngIf="!play" (click)="togglePlay()" class="px-6 py-2 rounded-xl text-lg hover:bg-[#007878] bg-[#008d8d] text-white">webcam</button>
+        <button *ngIf="play" (click)="togglePlay()" class="px-6 py-2 rounded-xl text-lg hover:bg-red-500 bg-red-700 text-white">stop</button>
+        <button *ngIf="play" (click)="capture()" class="px-6 py-2 rounded-xl text-lg hover:bg-[#007878] bg-[#008d8d] text-white">capture</button>
+        <label *ngIf="!play" for="file-upload" class="custom-file-upload">Upload image</label>
+        <input id="file-upload" (change)="uploadImage($event)" *ngIf="!play" type="file" />
+        <button *ngIf="image" (click)="detectFace()"
+         class="px-2 py-2 rounded-xl text-lg hover:bg-[#780018] bg-[#8d0000] text-white">
+          detect emotion
+        </button>
+      </div>
+    </div>
+    <div class=" w-[35rem] h-[33rem]  rounded-3xl  bg-gray-100 p-4 font-bold ">
+       <h1 class="text-3xl mb-1 text-cyan-800">Detected Emotions</h1>
+       <h1 *ngIf="results.length === 0" class="text-gray-400 text-2xl text-center translate-y-40">
+          No emotions detected yet
+       </h1>
+      <div class="w-full space-y-3 h-[28rem] overflow-auto">
+
+          <div *ngFor="let result of results" class="w-full h-28 flex p-[14px] flex-row items-start bg-white rounded-xl">
+              <img [src]="result.face64" class="w-[83px] h-[83px] rounded-lg
+               " />
+          </div>
+       </div>
+    </div>
   </div>
 </div>

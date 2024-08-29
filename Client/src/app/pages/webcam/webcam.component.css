@@ -6,9 +6,17 @@ input[type="file"] {
   color: white;
   border-radius: 12px;
   display: inline-block;
-  padding: 9px 5px;
+  padding: 9px 12px;
   cursor: pointer;
 }
 .custom-file-upload:hover{
   background-color: #005959;
 }
+#webcam {
+
+  background-image: url('https://media.istockphoto.com/id/1226328537/vector/image-place-holder-with-a-gray-camera-icon.jpg?s=612x612&w=0&k=20&c=qRydgCNlE44OUSSoz5XadsH7WCkU59-l-dwrvZzhXsI=');
+  background-size: cover;
+  background-position: center;
+}
+/* Styling the scrollbar */
+

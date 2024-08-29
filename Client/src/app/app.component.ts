@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Router, RouterOutlet } from '@angular/router';
 import { NavbarComponent } from "./components/navbar/navbar.component";
 
 @Component({
@@ -11,4 +11,7 @@ import { NavbarComponent } from "./components/navbar/navbar.component";
 })
 export class AppComponent {
   title = 'EmotionRecongnition';
+  constructor(private router : Router) {
+    // this.router.navigate(['/h']);
+  }
 }
