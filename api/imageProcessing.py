@@ -10,6 +10,8 @@ def detect_face(image: str):
         #remove this part data:image/png;base64,
         image = image.replace('data:image/jpg;base64,', '')
         image = image.replace('data:image/png;base64,', '')
+        image = image.replace('data:image/jpeg;base64,', '')
+
         print(image[:30])
         img = base64_to_image(image)
         gray_img = cv.cvtColor(img, cv.COLOR_BGR2GRAY)
