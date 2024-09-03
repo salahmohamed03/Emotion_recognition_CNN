@@ -1,5 +1,6 @@
 export interface Result {
-    emotion: string;
-    probability: number;
-    face64 : string;
+  image64: string,
+  emotion: string,
+  position: string
 }
+

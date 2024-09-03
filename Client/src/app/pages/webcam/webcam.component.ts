@@ -78,24 +78,51 @@ export class WebcamComponent {
     }
     reader.readAsDataURL(event.target.files[0]);
   }
-  detectFace(){
+  // detectFace(){
+  //   if(!this.image){
+  //     alert('Please capture or upload an image');
+  //     return;
+  //   }
+  //   this.modelService.detectFace(this.image).subscribe({
+  //     next: (res) => {
+
+  //       const result: Result = {
+  //         emotion: 'happy',
+  //         probability: 2,
+  //         face64: `data:image/jpg;base64, ${res.image64}`
+  //       }
+  //       this.results.push(result);
+  //     },
+  //     error: (err) => {
+  //       console.error(err);
+  //     }
+  //   });
+  // }
+  detectEmotion(){
     if(!this.image){
       alert('Please capture or upload an image');
       return;
     }
-    this.modelService.detectFace(this.image).subscribe({
+    this.modelService.detectEmotion(this.image).subscribe({
       next: (res) => {
+        console.log(res);
 
         const result: Result = {
-          emotion: 'happy',
-          probability: 2,
-          face64: `data:image/jpg;base64, ${res.image64}`
+          emotion: res.emotion,
+          position: res.position,
+          image64: 'data:image/jpg;base64,'+res.image64
         }
+      this.videoRef.style.backgroundImage = `url(${result.image64})`;
+
         this.results.push(result);
+        this.image = null;
       },
       error: (err) => {
         console.error(err);
       }
     });
+  }
+  callResult(index : number){
+    this.videoRef.style.backgroundImage = `url(${this.results[index].image64})`;
   }
 }

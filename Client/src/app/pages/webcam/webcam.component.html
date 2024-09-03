@@ -4,12 +4,12 @@
     <div class="flex flex-col space-y-3 w-[29rem]">
       <video id="webcam" autoplay class="w-[29rem] h-[21.7rem] rounded-3xl  bg-gray-500"></video>
       <div class="flex flex-row space-x-3 justify-center">
-        <button *ngIf="!play" (click)="togglePlay()" class="px-6 py-2 rounded-xl text-lg hover:bg-[#007878] bg-[#008d8d] text-white">webcam</button>
-        <button *ngIf="play" (click)="togglePlay()" class="px-6 py-2 rounded-xl text-lg hover:bg-red-500 bg-red-700 text-white">stop</button>
-        <button *ngIf="play" (click)="capture()" class="px-6 py-2 rounded-xl text-lg hover:bg-[#007878] bg-[#008d8d] text-white">capture</button>
+        <button *ngIf="!play" (click)="togglePlay()" class="px-6 py-2 rounded-xl text-lg hover:bg-[#007878] bg-[#008d8d] text-white">Camera</button>
+        <button *ngIf="play" (click)="togglePlay()" class="px-6 py-2 rounded-xl text-lg hover:bg-red-500 bg-red-700 text-white">Stop</button>
+        <button *ngIf="play" (click)="capture()" class="px-6 py-2 rounded-xl text-lg hover:bg-[#007878] bg-[#008d8d] text-white">Capture</button>
         <label *ngIf="!play" for="file-upload" class="custom-file-upload">Upload image</label>
         <input id="file-upload" (change)="uploadImage($event)" *ngIf="!play" type="file" />
-        <button *ngIf="image" (click)="detectFace()"
+        <button *ngIf="image" (click)="detectEmotion()"
          class="px-2 py-2 rounded-xl text-lg hover:bg-[#780018] bg-[#8d0000] text-white">
           detect emotion
         </button>
@@ -22,9 +22,13 @@
        </h1>
       <div class="w-full space-y-3 h-[28rem] overflow-auto">
 
-          <div *ngFor="let result of results" class="w-full h-28 flex p-[14px] flex-row items-start bg-white rounded-xl">
-              <img [src]="result.face64" class="w-[83px] h-[83px] rounded-lg
+          <div *ngFor="let result of results" (click)="callResult(results.indexOf(result))"
+          class="w-full h-28 flex p-[14px] flex-row items-start bg-white rounded-xl cursor-pointer hover:bg-gray-300 transition-all duration-300">
+              <img [src]="result.image64" class="w-[83px] h-[83px] rounded-lg
                " />
+              <div class="flex flex-col ml-3">
+                <h1 class="text-xl text-cyan-800">{{result.emotion}}</h1>
+                <p>postion : {{result.position}}</p>
           </div>
        </div>
     </div>

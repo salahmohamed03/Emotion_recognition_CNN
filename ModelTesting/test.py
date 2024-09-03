@@ -2,6 +2,7 @@ import cv2
 import numpy as np
 from tensorflow.keras.models import load_model
 model = load_model('model.h5')
+import sys
 
 
 video=cv2.VideoCapture(0)
