@@ -88,3 +88,4 @@ def predict_image(image):
     result = model.predict(image)
     label = np.argmax(result, axis=1)[0]
     return labels_dict[label]
+print(model.summary())

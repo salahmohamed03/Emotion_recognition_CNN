@@ -1,5 +1,88 @@
-<div class="bg-cyan-50 w-full h-[1000px] pt-[7rem] pb-[2rem]">
+<div class="bg-cyan-50 w-full  pt-[7rem] pb-[2rem] max-h-fit">
   <div class="md:w-[80%] w-[95%] h-fit min-h-full  bg-white rounded-3xl mx-auto shadow-2xl
-              flex flex-row p-5  justify-around flex-wrap">
+              flex flex-row p-14  flex-wrap">
+              <section id="model-overview" class="mb-8">
+                <h2 class="text-3xl font-semibold text-cyan-700 mb-4">Emotion Recognition Model</h2>
+                <p class="text-lg">
+                    Our Emotion Recognition Model is a deep learning solution designed to identify and classify facial expressions into seven distinct emotions.
+                    This model has been trained on grayscale images with a resolution of 48x48 pixels.
+                </p>
+
+            </section>
+            <section id="model-database" class="mb-8" >
+              <h3 class="text-2xl font-semibold text-cyan-700 mb-4">Dataset</h3>
+              <p class="text-lg">
+                The Emotion Recognition Model is trained on the FER2013 dataset, which is a publicly available dataset for facial expression recognition. It consists of 35,887 grayscale images with a resolution of 48x48 pixels. The dataset is divided into three sets: training, validation, and testing, with approximately 80% of the images used for training, 10% for validation, and 10% for testing.
+              </p>
+            </section>
+            <section id="model-architecture" class="mb-8">
+                <h3 class="text-2xl font-semibold text-cyan-700 mb-4">Model Architecture</h3>
+                <div class="bg-gray-100 text-black-400 p-4  rounded overflow-x-auto">
+                  <code class="block whitespace-pre-wrap space-y-6">
+<span class="text-green-400">model</span> = Sequential()
+# <span class="text-green-700">Convolutional layers</span> <br>
+<span class="text-blue-800">model</span>.add(<span class="text-orange-600">Conv2D</span>(128, kernel_size=(3,3), activation=<span class="text-green-600">'relu'</span>, input_shape=(48,48,1)))
+<span class="text-blue-800">model</span>.add(<span class="text-orange-600">MaxPooling2D</span>(pool_size=(2,2)))
+<span class="text-blue-800">model</span>.add(<span class="text-orange-600">Dropout</span>(0.4))
+<br>
+<span class="text-blue-800">model</span>.add(<span class="text-orange-600">Conv2D</span>(256, kernel_size=(3,3), activation=<span class="text-green-600">'relu'</span>))
+<span class="text-blue-800">model</span>.add(<span class="text-orange-600">MaxPooling2D</span>(pool_size=(2,2)))
+<span class="text-blue-800">model</span>.add(<span class="text-orange-600">Dropout</span>(0.4))
+<br>
+<span class="text-blue-800">model</span>.add(<span class="text-orange-600">Conv2D</span>(512, kernel_size=(3,3), activation=<span class="text-green-600">'relu'</span>))
+<span class="text-blue-800">model</span>.add(<span class="text-orange-600">MaxPooling2D</span>(pool_size=(2,2)))
+<span class="text-blue-800">model</span>.add(<span class="text-orange-600">Dropout</span>(0.4))
+<br>
+<span class="text-blue-800">model</span>.add(<span class="text-orange-600">Conv2D</span>(512, kernel_size=(3,3), activation=<span class="text-green-600">'relu'</span>))
+<span class="text-blue-800">model</span>.add(<span class="text-orange-600">MaxPooling2D</span>(pool_size=(2,2)))
+<span class="text-blue-800">model</span>.add(<span class="text-orange-600">Dropout</span>(0.4))
+<br>
+<span class="text-blue-800">model</span>.add(<span class="text-orange-600">Flatten</span>())
+# <span class="text-green-700">Fully connected layers</span> <br>
+<span class="text-blue-800">model</span>.add(<span class="text-orange-600">Dense</span>(512, activation=<span class="text-green-600">'relu'</span>))
+<span class="text-blue-800">model</span>.add(<span class="text-orange-600">Dropout</span>(0.4))
+<span class="text-blue-800">model</span>.add(<span class="text-orange-600">Dense</span>(256, activation=<span class="text-green-600">'relu'</span>))
+<span class="text-blue-800">model</span>.add(<span class="text-orange-600">Dropout</span>(0.3))
+# <span class="text-green-700">Output layer</span> <br>
+<span class="text-blue-800">model</span>.add(<span class="text-orange-600">Dense</span>(7, activation=<span class="text-green-600">'softmax'</span>))
+</code>
+</div>
+                <ul class=" text-lg list-disc list-inside space-y-2 mt-4">
+                    <li><strong>Convolutional Layers:</strong>
+                        <ul class=" text-lg list-disc list-inside ml-6 space-y-1">
+                            <li>Four convolutional layers with 128, 256, and 512 filters, respectively.</li>
+                            <li>Each layer uses a 3x3 kernel with ReLU activation.</li>
+                            <li>MaxPooling is applied after each convolution layer to reduce the spatial dimensions.</li>
+                            <li>Dropout is included after each pooling layer to prevent overfitting.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Fully Connected Layers:</strong>
+                        <ul class=" text-lg list-disc list-inside ml-6 space-y-1">
+                            <li>Two fully connected layers with 512 and 256 units, both using ReLU activation.</li>
+                            <li>Dropout is applied after each dense layer for regularization.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Output Layer:</strong>
+                        <ul class=" text-lg list-disc list-inside ml-6 space-y-1">
+                            <li>A final Dense layer with 7 units using softmax activation for multiclass classification.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </section>
+
+            <section id="model-performance" class="mb-8">
+                <h3 class="text-2xl font-semibold text-cyan-700 mb-4">Model Performance</h3>
+                <p class="text-lg">
+                    The model achieves an accuracy of <strong>62%</strong> on the test set, indicating its ability to correctly classify facial emotions most of the time.
+                </p>
+            </section>
+            <section id="model-links" class="mb-8">
+              <h3 class="text-2xl font-semibold text-cyan-700 mb-4">Links</h3>
+              <ul class="text-lg list-disc list-inside space-y-2">
+                <li>
+                  <a href="https://github.com/salahmohamed03/Emotion_recognition_CNN.git" class="hover:text-cyan-900" target="_blank" rel="noopener noreferrer">GitHub Repository</a>
+                </li>
+              </ul>
+            </section>
   </div>
 </div>

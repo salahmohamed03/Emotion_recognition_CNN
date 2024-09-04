@@ -1,0 +1,6 @@
+fastapi
+numpy
+opencv-python
+pydantic
+tensorflow
+uvicorn
