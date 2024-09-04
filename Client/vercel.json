@@ -1,5 +1,16 @@
 {
-  "rewrites": [
-    { "source": "/Client/(.*)", "destination": "/Client" }
+  "routes": [
+    {
+      "src": "/",
+      "dest": "/"
+    },
+    {
+      "src": "/ourWork",
+      "dest": "/"
+    },
+    {
+      "src":"/about",
+      "dest": "/"
+    }
   ]
 }
